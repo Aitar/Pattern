@@ -5,4 +5,4 @@
 
 后端采用SpringBoot v2.2.6 + Mybatis v2.1.2，采用纯注解方式
 
-克隆后请在src/main/resources/application.yml中修改数据库等配置信息
+克隆后请在src/main/resources/application.yml中修改数据库等配置信息。若要运行示例，则在MySQL数据库中创建一个sample表即可
