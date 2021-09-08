@@ -18,7 +18,23 @@ public interface SampleMapper {
     })
     List<SamplePojo> getAll();
 
+    @Select("select * from sample where id = #{id}")
+    @ResultMap(value = {"sampleMap"})   //使用上面已经创建好的别名映射表
+    SamplePojo getById(String id);
+
     @Select("select * from sample where code = #{code}")
     @ResultMap(value = {"sampleMap"})   //使用上面已经创建好的别名映射表
     List<SamplePojo> getByCode(int code);
+
+    @Delete("delete from sample where id = #{id}")
+    @ResultMap(value = {"sampleMap"})
+    void deleteById(String id);
+
+    @Insert("insert into sample values (#{id}, #{name}, #{code})")
+    @ResultMap(value = {"sampleMap"})
+    void insert(String id, String name, int code);
+
+    @Update("update sample set name = #{name}, code = #{code} where id = #{id}")
+    @ResultMap(value = {"sampleMap"})
+    void update(String id, String name, int code);
 }
