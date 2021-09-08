@@ -1,0 +1,22 @@
+<div>
+  <nz-input-group nzAddOnBefore=" ID ">
+    <input type="text" nz-input [(ngModel)]="id" />
+  </nz-input-group>
+</div>
+
+<div>
+  <nz-input-group nzAddOnBefore="NAME">
+    <input type="text" nz-input [(ngModel)]="name" />
+  </nz-input-group>
+</div>
+
+<div>
+  <nz-input-group nzAddOnBefore="CODE">
+    <input type="number" nz-input [(ngModel)]="code" />
+  </nz-input-group>
+</div>
+
+<button nz-button nzType="primary" (click)="insert()">新增</button>
+<button nz-button nzType="primary" (click)="delete()" >删除</button>
+<button nz-button nzType="primary" (click)="update()">更新</button>
+<button nz-button nzType="primary" (click)="getById()">查找</button>

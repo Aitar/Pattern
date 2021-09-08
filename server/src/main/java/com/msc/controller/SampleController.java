@@ -2,6 +2,7 @@ package com.msc.controller;
 
 import com.msc.mapper.SampleMapper;
 import com.msc.pojo.SamplePojo;
+import com.msc.service.SampleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,26 +12,34 @@ import java.util.List;
 @CrossOrigin    //允许跨域访问
 public class SampleController {
 
-    final private SampleMapper sampleMapper;
+    final private SampleService sampleService;
 
-    public SampleController(SampleMapper sampleMapper) {
-        this.sampleMapper = sampleMapper;
+    public SampleController(SampleService sampleService) {
+        this.sampleService = sampleService;
     }
 
     @GetMapping("/all-sample")
     public List<SamplePojo> getAll() {
-        return sampleMapper.getAll();
+        return sampleService.getAll();
     }
 
-    @PostMapping("/post-sample")
-    public String isCollected(@RequestBody HashMap<String, String> map){
-        //TODO: 处理POST方法传来的Map，对应的key-value
-        return "success";
+    @GetMapping("/sample/{id}")
+    public SamplePojo getById(@PathVariable String id) {
+        return sampleService.getById(id);
     }
 
-    @DeleteMapping("/delete-sample/{id}")
-    public String delectCollect(@PathVariable String id){
-        //TODO: 处理删除的方法
-        return "成功删除一条收藏信息";
+    @PostMapping("/sample")
+    public void insert(@RequestBody HashMap<String, String> map){
+        sampleService.insertSample(map);
+    }
+
+    @DeleteMapping("/sample/{id}")
+    public void delete(@PathVariable String id){
+        sampleService.deleteSample(id);
+    }
+
+    @PutMapping("/sample")
+    public void update(@RequestBody HashMap<String, String> map) {
+        sampleService.updateSample(map);
     }
 }
